@@ -89,9 +89,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/autobox.pm
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/autobox.pod
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/autobox/universal.pm
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/autobox.pm
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/autobox.pod
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/autobox/universal.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -99,7 +99,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/autobox/autobox.so
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/auto/autobox/autobox.so
 
 %files license
 %defattr(0644,root,root,0755)
