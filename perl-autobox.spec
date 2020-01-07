@@ -4,14 +4,14 @@
 #
 Name     : perl-autobox
 Version  : 3.0.1
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/C/CH/CHOCOLATE/autobox-v3.0.1.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/C/CH/CHOCOLATE/autobox-v3.0.1.tar.gz
 Summary  : 'call methods on native types'
 Group    : Development/Tools
 License  : Artistic-2.0
-Requires: perl-autobox-lib = %{version}-%{release}
 Requires: perl-autobox-license = %{version}-%{release}
+Requires: perl-autobox-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(IPC::System::Simple)
 BuildRequires : perl(Scope::Guard)
@@ -26,20 +26,11 @@ The autobox pragma allows methods to be called on integers, floats, strings, arr
 %package dev
 Summary: dev components for the perl-autobox package.
 Group: Development
-Requires: perl-autobox-lib = %{version}-%{release}
 Provides: perl-autobox-devel = %{version}-%{release}
+Requires: perl-autobox = %{version}-%{release}
 
 %description dev
 dev components for the perl-autobox package.
-
-
-%package lib
-Summary: lib components for the perl-autobox package.
-Group: Libraries
-Requires: perl-autobox-license = %{version}-%{release}
-
-%description lib
-lib components for the perl-autobox package.
 
 
 %package license
@@ -50,14 +41,24 @@ Group: Default
 license components for the perl-autobox package.
 
 
+%package perl
+Summary: perl components for the perl-autobox package.
+Group: Default
+Requires: perl-autobox = %{version}-%{release}
+
+%description perl
+perl components for the perl-autobox package.
+
+
 %prep
 %setup -q -n autobox-v3.0.1
+cd %{_builddir}/autobox-v3.0.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -67,7 +68,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -76,7 +77,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-autobox
-cp LICENSE.md %{buildroot}/usr/share/package-licenses/perl-autobox/LICENSE.md
+cp %{_builddir}/autobox-v3.0.1/LICENSE.md %{buildroot}/usr/share/package-licenses/perl-autobox/ce7ac86035018a3588a651c30f7635010f2a69c4
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -89,18 +90,18 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/autobox.pm
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/autobox.pod
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/autobox/universal.pm
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/autobox.3
 
-%files lib
-%defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/auto/autobox/autobox.so
-
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-autobox/LICENSE.md
+/usr/share/package-licenses/perl-autobox/ce7ac86035018a3588a651c30f7635010f2a69c4
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/autobox/autobox.so
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/autobox.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/autobox.pod
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/autobox/universal.pm
