@@ -4,7 +4,7 @@
 #
 Name     : perl-autobox
 Version  : 3.0.1
-Release  : 16
+Release  : 17
 URL      : https://cpan.metacpan.org/authors/id/C/CH/CHOCOLATE/autobox-v3.0.1.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/C/CH/CHOCOLATE/autobox-v3.0.1.tar.gz
 Summary  : 'call methods on native types'
