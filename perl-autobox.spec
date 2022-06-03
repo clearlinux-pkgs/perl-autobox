@@ -4,7 +4,7 @@
 #
 Name     : perl-autobox
 Version  : 3.0.1
-Release  : 18
+Release  : 19
 URL      : https://cpan.metacpan.org/authors/id/C/CH/CHOCOLATE/autobox-v3.0.1.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/C/CH/CHOCOLATE/autobox-v3.0.1.tar.gz
 Summary  : 'call methods on native types'
@@ -101,7 +101,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/auto/autobox/autobox.so
-/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/autobox.pm
-/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/autobox.pod
-/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/autobox/universal.pm
+/usr/lib/perl5/*
